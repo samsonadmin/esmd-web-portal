@@ -446,126 +446,10 @@ if (!function_exists('sanitize')) {
 }
 
 
-function send_register_email($username, $realname, $email_code, $email){
-
-	mb_internal_encoding('UTF-8');
-
-	include_once 'php_mailer/class.phpmailer.php';
-
-	$subject = "香港第一車網：會員登記確認電郵 car1.hk new user account confirmation";
-
-	$body = '您好 ' . $realname ."，<br />\r\n";
-
-
-	$body .= '剩下一個步驟就可以完成 car1.hk 的註冊程序了！<br />請按下列的 URL 完成註冊程序。<br />'."<br />\r\n";
-
-
-	//Please click on the following link to confirm your email
-
-	$body .= '<a target="_blank" href="'. SITE_BASE_URL .'/register-confirm.php?hash=' .$email_code.'" />'. SITE_BASE_URL .'/register-confirm.php?hash='. $email_code. '</a><br />'."\r\n";
-
-	$body .= '當您無法點選「啟動帳號」的連結時，您可以複製以下整段的網址到您的瀏覽器中進行帳號的啟動'."<br />\r\n";
-
-	$body .= ''. SITE_BASE_URL .'/register-confirm.php?hash='. $email_code. "\r\n";
-
-	$body .= '<br /><br />多謝您對 car1.hk 的支持' ."\r\n";
-
-	
-	$mail    = new PHPMailer();
-	//$body    = $msg;
-	$mail->IsSMTP();
-	$mail->SMTPAuth   = true;
-	$mail->IsHTML();
-	$mail->Port = 443;                    // set the SMTP server port
-	$mail->Host = "ssl://email-smtp.us-east-1.amazonaws.com"; // SMTP server
-	$mail->Username   = "AKIAIEJ7F7IKLQWA37WA";     // SMTP server username
-	$mail->Password   = "AufxnYrFw9zc8+JweM4cz55dhyYUlHxYHgBT2pSOvwvy";
-	$mail->CharSet = 'UTF-8';
-	$mail->Encoding = 'base64';
-	//$mail->Encoding = 'mime';
-	//$mail->Encoding = '8bit';
-
-
-	$mail->SetFrom("noreply@car1.hk", "香港第一車網 car1.hk");	//The appearant email sender
-	$mail->AddReplyTo("noreply@car1.hk", "香港第一車網 car1.hk");			//The real bounce back
-
-
-//	$mail->AddReplyTo("apache@she.com");
-	/*
-	$mail->Priority = 3;
-	$mail->UseMSMailHeaders = 1;
-	$mail->WordWrap   = 50; // set word wrap
-	*/
-
-	//$mail->AddBCC( 'samson.li@she.com', 'handsome');
-	//$mail->AddCustomHeader('Thread-Topic: '.$subject);
-	//$mail->AddCustomHeader('Reply-To: noreply@car1.hk');
-	//$mail->AddCustomHeader('From: `@car1.hk');
-	//$mail->AddCustomHeader('Sender: noreply@car1.hk');
-	//$mail->AddCustomHeader('Return-Path: noreply@car1.hk');
-	//$mail->AddCustomHeader('Importance: Normal');
-
-
-/*
-	$mail->AddCustomHeader( 'X-Priority: 3');
-	$mail->AddCustomHeader( 'X-Priority: Normal');
-	$mail->AddCustomHeader( 'X-MSMail-Priority: Normal');
-	$mail->AddCustomHeader( 'X-Mailer: Microsoft Outlook Express 6.00.2800.1807');
-	$mail->AddCustomHeader( 'X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1896');
-	$mail->AddCustomHeader( 'Return-Path: original-sender-samson@she.com');
-	*/
-
-
-	//$mail->Mailer   = "sendmail";						//Using the local sendmail
-
-//	$mail->Host     = "mail.she.com";
-
-/*
-
-	$mail->Mailer   = "smtp";
-	$mail->Host     = "smtpo.ctimail.com";
-*/
-
-	$mail->Subject = mb_encode_mimeheader($subject, "utf8");
-
-	$mail->AltBody = $body; // optional, comment out and test
-	$mail->IsHTML(true);
-	$mail->Body = $body;
-
-
-	$mail->AddAddress($email, $realname);
-
-
-
-
-	if(!$mail->Send())
-	 {
-		echo "<script>Email Sending Failed: ".$mail->ErrorInfo ." </script>";
-
-		$mail->Mailer   = "smtp";
-		$mail->Host = "127.0.0.1";
-		$mail->SMTPAuth = false;
-		$mail->Port  =  25;
-		$mail->Send();
-
-		//send_email_use_gmail($realname, $email, $subject, $body);
-
-	 }
-
-
-
-	// Clear all addresses and attachments for next loop
-	$mail->ClearAddresses();
-	$mail->ClearAttachments();
-
-
-
-}
-
 if (!function_exists('get_url')) {
 	function get_url($url){
 
-		$header[] = "User-Agent: CarryAI ENGINE Process";
+		$header[] = "User-Agent: EMSD Web Portal by CarryAI ENGINE Process";
 		$header[] = "Accept-Language: en-us,en;q=0.5";
 
 		$ch = curl_init();
@@ -760,77 +644,6 @@ function send_no_cache_header() {
 	header ( "Pragma: no-cache" );
 }
 
-
-function send_sms($src, $tar_mobile, $utf8_message){
-
-	include_once 'access_you/convert_func.php';
-
-	if ( $tar_mobile == '62288577' ) return false;
-	if ( $tar_mobile == '53444693' ) return false;
-	if ( $tar_mobile == '53428025' ) return false;
-	if ( $tar_mobile == '66435154' ) return false;
-	if ( $tar_mobile == '66431246' ) return false;
-	if ( $tar_mobile == '15218489618' ) return false;
-	if ( $tar_mobile == '67414728' ) return false;
-
-
-
-
-	$language = 2; //for unicode
-
-	$message = unicode_get(convert($language, $utf8_message));
-
-	if (empty($tar_mobile) || empty($utf8_message) ){
-
-		return 'Error: Password not correct / empty message / empty phone';
-	}
-
-	$url = "http://api.accessyou.com/sms/sendsms-senderid.php?pwd=6973&accountno=11005164&size=l&msg=" . $message. "&phone=852". $tar_mobile ."&from=" . $src;
-
-	//echo $url;
-	//die;
-
-	$string = get_url($url);
-	return $string;
-
-}
-
-
-function send_sms2($src, $tar_mobile, $message){
-
-	$message = urlencode ( $message );
-
-	if (empty($tar_mobile) || empty($message) ){
-
-		return 'Error: Password not correct / empty message / empty phone';
-	}
-
-	//https://sms.hksms-pro.com/
-	//https://websms1.hksmspro.com/
-	$url = 'http://hktelpro.com:8080/service/smsapi1.asmx/SendMessage?Username=car1hk&Password=1a477073&Message=' . $message . '&Telephone='. $tar_mobile .'&CountryCode=852&UserDefineNo=&Sender='.$src;
-
-	//echo $url;
-	//die;
-
-	$string = get_url($url);
-
-/*	$string='<?xml version="1.0" encoding="utf-8"?>
-<string xmlns="Able">&lt;ReturnValue&gt;
-  &lt;State&gt;1&lt;/State&gt;
-  &lt;Count&gt;1&lt;/Count&gt;
-  &lt;ResponseID&gt;3483445&lt;/ResponseID&gt;
-&lt;/ReturnValue&gt;</string>';
-*/
-
-	$string = str_replace( ' xmlns="Able"', '', $string );
-
-	$string0 = simplexml_load_string( $string);
-
-	$xml = simplexml_load_string( urldecode( $string0) );
-
-	return (string) $xml->ResponseID;
-
-}
 
 function send_whatsapp($tar_mobile, $image_url, $image_thumb, $title, $desc=false)
 {
@@ -1482,116 +1295,6 @@ function send_whatsapp_waha_text($tar_mobile, $title, $url=false, $server=4)
 
 
 
-function send_vhsoft_cmp_datahub($data, $server="")
-{
-
-
-	//$url = "https://datahub.harvonet.com/kafka/v3/clusters/pwxAfJ4_SVWlv5jvE3opQA/topics/DEVSMAI/records";
-
-	$url = "https://datahub.harvonet.com/kafka/v3/clusters/pwxAfJ4_SVWlv5jvE3opQA/topics/PRODSMAI/records";
-
-	// if ($server == "prod")
-	// {
-		
-	// }
-
-
-	$username = "RGT";
-	$password = "0FAqVN2s";
-
-	$headers = [
-		'accept: application/json',
-		'Content-Type: application/json'
-	];
-	
-		
-	$ch = curl_init();
-
-	// echo "<pre>";
-	// print_r( $to_waha );
-	// echo "</pre>";
-	
-
-	//curl_setopt($ch,CURLOPT_HTTP_VERSION,CURL_HTTP_VERSION_1_1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
-	curl_setopt($ch, CURLOPT_NOPROGRESS, true);
-
-	curl_setopt($ch, CURLOPT_URL, $url );
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)) ;
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
-	curl_setopt($ch, CURLOPT_TCP_FASTOPEN, 1);	
-	curl_setopt($ch, CURLOPT_ENCODING, '');
-
-
-	$response = curl_exec( $ch );
-	// Check for errors
-	if(curl_errno($ch)) {
-		$error_msg = curl_error($ch);
-		//print_r($error_msg);
-		return false;
-	} else {
-		$error_msg = '';
-	}
-
-	curl_close($ch);
-
-	if (isset($debug))
-	{
-		$response_array=json_decode($response);
-		echo json_encode( $response_array, JSON_PRETTY_PRINT);
-	}
-
-
-	//Write a lot of text
-	//safe_log( "debug.txt",  date('Y-m-d H:i:s'). " " . " WHATSAPP_RETURN: " . $response . "\n", FILE_APPEND );
-
-
-	return trim($response) ;
-
-}
-
-
-function send_ifttt($image_url, $image_thumb, $title)
-{
-
-	/////////////////////////////////////////////////////////////////////////////////////////////
-	//ifttt
-
-	//curl -X POST -H "Content-Type: application/json" -d '{"value1":"he","value2":"12","value3":"345"}' https://maker.ifttt.com/trigger/{event}/with/key/cERWIGoBsbb5h9j_6pwOF-
-
-
-	$ifttt_service_key = "_6XBtFUhjIb_yoOHCnFvd_hTi8TuqhkdgwzPZbEyurKHNkuvFiLgx6Bj1k0BY7NR";
-	$ifttt_webhook = "https://maker.ifttt.com/trigger/detection/with/key/cERWIGoBsbb5h9j_6pwOF-";
-	//$ifttt_webhook = "https://maker.ifttt.com/use/cERWIGoBsbb5h9j_6pwOF-";
-	//$ifttt_webhook = "https://maker.ifttt.com/use/dRtSjOCOvtvDeaLPnS-Tuu";
-
-	//shortened_link
-	//thumbnailUrl
-
-	$detected_object = isset($_POST['detected_object']) ? trim($_POST['detected_object']) : "UNKNOWN";
-
-	$send_to_ifttt = <<<JSONMESSAGE
-	{	
-		"value2": "{$title}", 
-		"value1": "{$image_url}",
-		"value3": "{$image_thumb}"
-	}
-	JSONMESSAGE;
-
-	//just not posting for now
-	$return_data = post_data($ifttt_webhook, $send_to_ifttt, array("Content-Type: application/json") );
-
-	return $return_data ;
-}
-
-
 function enlarge_coords(&$polygon_array)
 {
 	for ( $i=0 ; $i< count ($polygon_array); $i++ )
@@ -1705,36 +1408,6 @@ function filter_detections_by_polygon($polygon, $detections)
 	
 }
 
-function send_rec_gt_api($image_file, $filename,$filesize)
-{
-	$api_url = "https://aiotrak.rec-gt.com/api/application-api/upload-image/default_application/868474041801646";
-
-	/*
-	//Doesn't work
-	$api_post_data = array(
-		"logo" => "@$image_file", 
-		"filename" => $filename)
-	;
-	*/
-
-	$api_post_data = array('logo'=> new CURLFILE($image_file) );
-
-	$return_data = post_data_multipart(
-		$api_url, 
-		$api_post_data, 
-		array(
-			"Content-Type: multipart/form-data",
-//			'application/octet-stream',
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsIm5hbWUiOiJBZG1pbmlzdHJhdG9yIiwiZ3JvdXAiOjIsInBlcm1pc3Npb25zIjpbXSwibGluZSI6IkFMTCIsImlhdCI6MTYyNjc1MjkzOCwiZXhwIjoxOTM3NzkyOTM4LCJpc3MiOiJBQ0NFU1MifQ.EV9I8oWaZAhi2TaOUaR5kSSTGMsjNqNtl5k18C0PIA4',
-			"Content-Type: application/json"
-		),
-		$filesize
-	);
-
-	//echo $return_data;
-
-	return $return_data;
-}
 
 function check_zoning($serial_no, $detection_array)
 {
@@ -1955,27 +1628,6 @@ function check_zoning($serial_no, $detection_array)
 	return array($need_to_send_alert,  $debug_messages, $extra_messages);
 }
 
-/** 
- * Get hearder Authorization
- * */
-function getAuthorizationHeader(){
-	$headers = null;
-	if (isset($_SERVER['Authorization'])) {
-		$headers = trim($_SERVER["Authorization"]);
-	}
-	else if (isset($_SERVER['HTTP_AUTHORIZATION'])) { //Nginx or fast CGI
-		$headers = trim($_SERVER["HTTP_AUTHORIZATION"]);
-	} elseif (function_exists('apache_request_headers')) {
-		$requestHeaders = apache_request_headers();
-		// Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care about capitalization for Authorization)
-		$requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)), array_values($requestHeaders));
-		//print_r($requestHeaders);
-		if (isset($requestHeaders['Authorization'])) {
-			$headers = trim($requestHeaders['Authorization']);
-		}
-	}
-	return $headers;
-}
 /**
 * get access token from header
 * */
@@ -1988,32 +1640,6 @@ function getBearerToken() {
 		}
 	}
 	return null;
-}
-
-function create_datetime_png($filename)
-{
-	// Create a new image
-	$image = imagecreate(400, 80);
-
-	// Set background color to white
-	$bg_color = imagecolorallocate($image, 255, 255, 255);
-
-	// Set text color to black
-	$text_color = imagecolorallocate($image, 0, 0, 0);
-
-	// Get current date and time
-	$date_time = date('Y-m-d H:i:s');
-
-	// Add text to the image
-	$font_size = 18;
-	$font_path = './OpenSans-Regular.ttf'; // Path to TrueType font file
-	imagettftext($image, $font_size, 0, 10, 50, $text_color, $font_path, $date_time);
-
-	// Save the image as PNG
-	imagepng($image, $filename);
-
-	// Free up memory
-	imagedestroy($image);
 }
 
 function random_color_part() {
