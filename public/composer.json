@@ -1,0 +1,7 @@
+{
+    "require": {
+       "ozdemir/datatables": "2.*",
+        "sonata-project/google-authenticator": "^2.3",
+        "spomky-labs/otphp": "^11.3"
+    }
+}

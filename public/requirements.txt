@@ -1,0 +1,19 @@
+sudo apt-get install php-curl
+sudo apt-get install php-memcached
+sudo apt-get install php-dbo
+sudo apt-get install php-mysql
+sudo apt-get install php-xsl
+sudo apt-get install php-mbstring
+sudo apt-get install php-simplexml
+sudo apt-get install php-common
+sudo apt-get install php-xml
+sudo apt-get install php-dom
+sudo apt-get install php-opcache
+sudo apt-get install php-gettext
+sudo apt-get install php-phar
+sudo apt-get install php-opcache
+sudo apt-get install -y graphicsmagick
+sudo apt-get install php-curl
+sudo apt-get install php-sqlite3
+
+composer require spomky-labs/otphp

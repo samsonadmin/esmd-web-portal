@@ -1,0 +1,27 @@
+[
+    {
+        "Name" : "Samson Li",
+        "Company" : "CarryAI",
+        "whatsapp": "85292157557",
+        "sms": "85292157557",
+        "email": "samson_li@hotmail.com",
+
+        "filter_includes": {
+            "client": "HOME",
+            "serial_no": "",
+            "ip": "",
+            "time_start": "",
+            "time_end": "",
+            "detection_text": ""
+        },
+        "filter_excludes": {
+            "client": "HOME",
+            "serial_no": "",
+            "ip": "",
+            "time_start": "",
+            "time_end": "",
+            "detection_text": ""
+        }
+
+    }
+]

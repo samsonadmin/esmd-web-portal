@@ -1,0 +1,12 @@
+-- database: /home/samsonli/yolo-web/public/upload.db
+ALTER TABLE ai_detections ADD COLUMN extracted_detection_classes TEXT;;
+
+UPDATE ai_detections
+    SET extracted_detection_classes = json_extract(detection_json, '$.class')
+    WHERE detection_json <> '';
+
+UPDATE ai_detections
+            SET extracted_detection_classes = REPLACE(
+                REPLACE(extracted_detection_classes, 'helmet_yes', 'helmet_good'),
+                'helmet_ok', 'helmet_bad'
+            )    

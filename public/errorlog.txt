@@ -1,0 +1,32 @@
+*   Trying 34.234.65.77...
+* TCP_NODELAY set
+* Connected to maker.ifttt.com (34.234.65.77) port 443 (#0)
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+*  subject: OU=Domain Control Validated; CN=*.ifttt.com
+*  start date: Sep  6 17:00:15 2018 GMT
+*  expire date: Sep 28 22:13:54 2020 GMT
+*  subjectAltName: host "maker.ifttt.com" matched cert's "*.ifttt.com"
+*  issuer: C=US; ST=Arizona; L=Scottsdale; O=GoDaddy.com, Inc.; OU=http://certs.godaddy.com/repository/; CN=Go Daddy Secure Certificate Authority - G2
+*  SSL certificate verify ok.
+> POST /trigger/detection/with/key/cERWIGoBsbb5h9j_6pwOF- HTTP/1.1
+Host: maker.ifttt.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 137
+
+* upload completely sent off: 137 out of 137 bytes
+< HTTP/1.1 200 OK
+< Date: Thu, 06 Jun 2019 14:49:51 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 49
+< Connection: keep-alive
+< X-Top-SecreTTT: VG9vIGVhc3k/IElmIHlvdSBjYW4gcmVhZCB0aGlzLCBFbWFpbCB1cyBhdCBqb2JzK3NlY3JldEBpZnR0dC5jb20uIFdlIHdhbnQgTWFrZXJzLg==
+< Server: web_server
+< 
+* Connection #0 to host maker.ifttt.com left intact
