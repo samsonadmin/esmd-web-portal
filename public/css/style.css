@@ -327,6 +327,7 @@ animation: animate2 15s linear infinite;
   background-color: #ffffff6a;
   margin-right: 0.1em;
   margin-bottom: 0.5em;
+  color: #4099ff;
 }
 
 .navbar-nav li:hover:not(.active) {
@@ -389,6 +390,7 @@ animation: animate2 15s linear infinite;
 
 #footerNav
 {
+  margin-top: 20px;
   background-color: #0059ff99;
   color: #fff;
   padding: 10px 0;

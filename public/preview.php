@@ -206,8 +206,4 @@ $meta_tags[] = '<meta property="og:url" content="'.$actual_link.'" />';
 </div>
 
 
-<?//print_r($all_rows); ?>
-
-
-</body>
-</html>
+<? include "footer.php"; ?>

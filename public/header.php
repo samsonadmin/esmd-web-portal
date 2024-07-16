@@ -10,7 +10,7 @@ if ( isset ($meta_tags))
   echo implode("\n", $meta_tags);
 }
 ?>
-<title><?=isset($title)? $title : "CarryAI AI Safety Platform"?></title>
+<title><?=isset($title)? $title : "Intelligent Site Safety Monitoring System powered by CarryAI"?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=1">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">

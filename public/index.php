@@ -221,7 +221,7 @@ include "header.php";
     </section>
     
   </div>
-
+</div>
 <script>
 
 function resize_small_cards() {

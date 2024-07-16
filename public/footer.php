@@ -1,4 +1,5 @@
-<div class="ring_container">
+<div class="container-md">
+  <div class="ring_container">
     <div class="ring">
       <i style="--clr:#FF537020;" ></i> 
       <i style="--clr:#FFB64D23;"></i>

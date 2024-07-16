@@ -97,18 +97,18 @@ $(document).ready(function() {
                 // this case `data: 0`.
                 title: 'Image', "orderable": false, 
                 "render": function ( data, type, row ) {
-                    return '<a class="gallery" href="' + data + '" target="_blank"><img src="' + row[3]+ '" style="max-height: 80px; " title="' + row[4] + '" /></a>';
+                    return '<a class="gallery" href="' + row[3] + '" target="_blank"><img src="' + data+ '" style="max-height: 80px; " title="' + row[4] + '" /></a>';
                 },
                 "targets": 2
             },
-            { title: 'url',  "targets": 3, "visible": false, "orderable": false } ,
-            { title: 'Alarm',  "targets": 4 } ,
-            { title: 'Detections',  "targets": 5,
+            { title: 'URL',  "targets": 3, "visible": false, "orderable": false } ,
+            { title: 'Alarm',  "targets": 4, 
                 render: function ( data, type, row)
                 {
                     return data + ' <a href="preview.php?id=' +  row[0] + '"><i class="bi bi-chat-left-dots"></i></a>';
-                }                
+                }  
             } ,
+            { title: 'Detections',  "targets": 5 ,"visible": false} ,
             { title: 'Clients',  "targets": 6 },
             
               
