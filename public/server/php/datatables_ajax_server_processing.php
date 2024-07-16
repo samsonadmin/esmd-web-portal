@@ -32,38 +32,28 @@ if (!isset( $_SESSION['admin_user']) )
 
 
 $fields_to_display = array(
+  "id",
   "datetime",
-  "url",
   "thumbnail",
-  "detections",
-  "detection_json", 
-  "ai_detections.serial_no",
-  "ai_detections.id",
-  "machine_information.name",
-  "machine_information.location",
-  "machine_information.remarks"  
+  "url",        
+  "detections",    
+  "extracted_detection_classes",
+  "client",
+  "remarks"  
 );
 
 
 if ($_SESSION['access'] === "admin")
 {
   $fields_to_display = array(
-      "datetime",
-      "url",
-      "thumbnail",
-      "detections",    
-      "detection_json",
-      "client",
-      "ai_detections.serial_no",
-     // "git_hash",
-      "ip",
-      "ai_detections.id",
-      "machine_information.name",
-      "machine_information.location",
-      "machine_information.remarks"
-      //"sent_status",
-     // "remarks",
-     // "jetpack_version"
+    "id",
+    "datetime",
+    "thumbnail",
+    "url",        
+    "detections",    
+    "extracted_detection_classes",
+    "client",
+    "remarks" 
     );
 }
 
@@ -97,9 +87,6 @@ if ( isset($_REQUEST['debug']))
   print_r($sql_where);
 
 $sql = "SELECT " . implode(", ", $fields_to_display) . " FROM ai_detections" ;
-
-$sql .= " LEFT JOIN machine_information ON ai_detections.serial_no = machine_information.serial_no ";
-
 
 if ( count( $sql_where ) >1 )
 {
@@ -135,10 +122,8 @@ if ( isset ($_REQUEST['searchBuilder']))
       $search_builder_array[$i]['data'] = "detections";
     elseif ( $search_builder_array[$i]['data'] == "Detection JSON")
       $search_builder_array[$i]['data'] = "detection_json";      
-    elseif ( $search_builder_array[$i]['data'] == "Detection Machine IP")
-      $search_builder_array[$i]['data'] = "ip";
-    elseif ( $search_builder_array[$i]['data'] == "Machine Serial")
-      $search_builder_array[$i]['data'] = "serial_no";
+    elseif ( $search_builder_array[$i]['data'] == "detection_type")
+      $search_builder_array[$i]['data'] = "extracted_detection_classes";
     else
       $search_builder_array[$i]['data'] = sanitize($search_builder_array[$i]['data']);
 
@@ -250,7 +235,7 @@ foreach ($results['data'] as &$row)
   // Check if the page was requested with HTTPS
   if( $is_cloudflare_https || $is_https){
     // Replace http with https in $row[1]
-    $row[1] = str_replace('http://', 'https://', $row[1]);
+    $row[3] = str_replace('http://', 'https://', $row[3]);
     $row[2] = str_replace('http://', 'https://', $row[2]);
   }
 
@@ -265,7 +250,7 @@ foreach ($results['data'] as &$row)
   }
   else
   {
-    $detect_classes = explode("|", $row[3]) ;
+    $detect_classes = explode("|", $row[4]) ;
   }
   
   foreach ($detect_classes as &$class)
@@ -274,14 +259,20 @@ foreach ($results['data'] as &$row)
   }
 
   //$row[3] . '::' .
-  $row[3] =  implode(", ", $detect_classes) ;
+  $row[4] =  implode(", ", $detect_classes) ;
+
+  $row[5] = str_ireplace( array("[","]"), array("", ""), $row[5]);
+
   //print_r( $row );
 
   if ( isset ($cookieDomain) && $cookieDomain == ".rec-gt.com") 
   {
     $row[2] = str_ireplace("http://yolo.carryai.co/", "", $row[2]);
-    $row[1] = str_ireplace("http://yolo.carryai.co/", "", $row[1]);
+    $row[3] = str_ireplace("http://yolo.carryai.co/", "", $row[3]);
   }
+
+  
+
 }
 
 

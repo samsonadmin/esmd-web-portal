@@ -93,8 +93,8 @@ if ( isset ($meta_tags))
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 
-<link rel="stylesheet" href="./css/style.css?d=2">
-<link rel="stylesheet" href="css/dashboard-style.css?<?=mt_rand(1,9999999)?>">
+<link rel="stylesheet" href="css/style.css?d=<?=mt_rand(0,999999)?>">
+<!--<link rel="stylesheet" href="css/dashboard-style.css?">-->
 
 <style>
 
@@ -102,47 +102,66 @@ if ( isset ($meta_tags))
 </style>
 </head>
 <body>
-<nav class="navbar" style="background-image: linear-gradient(to left, #e6e9f0 0%, #eef1f5 100%);;">
+<nav class="navbar" id="header-bar">
   <div class="container-md">
 
-  <div class="">
+
 
 
     <div class="row mb-3">
 
-      <div class="col-xl-2 col-sm-3 col-5 title-logo">
+      <div class="col-xl-2 col-sm-2 col-4 title-logo">
         <img src="images/emsd-logo.png" />
       </div>
-      <div class="col-xl-10 col-sm-9 col-7">
+      <div class="col-xl-10 col-sm-10 col-8 title">
         <h2 class="large-title">
-        Intelligent Site Safety Monitoring System
-        
+        Intelligent Site Safety Monitoring System        
         </h2>
-        <!--<p>Statistics on minimal cards with Title &amp; Sub Title.</p>-->
+        
       </div>
-
-  </div>
+    </div>
 
   </div>
 </nav>
 
 
-<? if ( isset($_SESSION)) { ?>
-<div class="container-md" style="margin-top: 1em;">
+<? if ( isset($_SESSION) && isset($_SESSION['admin_user'] ) ) { ?>
+<nav class="navbar navbar-dark navi-bar-bg" style="padding-bottom:0;">
+<div class="container-md" >
+
+  <div id="main_nav" style="width: 100%;">
+
+  <? if ( isset ( $_SESSION['admin_user'] ) ) { ?>
+    <ul class="navbar-nav" style="float: right;"> 
+      <li class="nav-item"><a class="nav-link" href="/?logout=now"><i data-lucide="log-out"></i> <?=$_SESSION['admin_user']?></a></li>
+    </ul> 
+  <? } ?>
   
-  <div class="d-flex" style="float: right;">
+    <ul class="navbar-nav">
+      <li class="nav-item active"> <a class="nav-link" href="index.php">Dashboard </a> </li>
+      <li class="nav-item"><a class="nav-link" href="ai-detections.php"> AI Detections </a></li>
+      <li class="nav-item"><a class="nav-link" href="#"> Trespassing </a></li>
+      <li class="nav-item"><a class="nav-link" href="#"> Heat  </a></li>
+      <li class="nav-item"><a class="nav-link" href="#"> Trespassing </a></li>
+    </ul>   
+      
 
-    <? if ( isset($_SESSION['access'] ) && $_SESSION['access'] === "admin") { ?>
-      <a href="list-all-zones.php" class="btn btn-info">List all Serials</a> &nbsp;
-    <? } ?>    
+  </div> 
 
-    <? if ( isset ( $_SESSION['admin_user'] ) ) { ?>
-      <a href="/?logout=now" class="btn btn-warning">Logout: <?=$_SESSION['admin_user']?></a>
-    <? } ?>
-  </div>  
+
+<? if ( isset($_SESSION)) { ?>
+<div class="container-md">
+  
+ 
 </div>  
 
 <? } ?>
 
-<div style="height: 10px; clear:both;"></div>
+</div>
+<div style="border-bottom: 1px solid #ffffff99; height: 1px; clear: both; width: 100%;"></div>
+</nav>
+
+<? } ?>
+<div style="height: 20px; clear: both;"></div>
+
 

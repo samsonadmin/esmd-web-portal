@@ -14,260 +14,238 @@ include 'cms_auth.php';
 
 display_login_form();
 
-
-$fields_to_display = array(
-    "datetime",
-    "url",
-    "thumbnail",
-    "detections",    
-    "extracted_detection_classes",
-    "id",
-    "Name",
-    "Location",
-    "Remarks"  
-  );
-  
-
-if ($_SESSION['access'] === "admin")
-{
-    $fields_to_display = array(
-        "Date Time",
-        "image",
-        "thumbnail",
-        "detections",    
-        "extracted_detection_classes",
-        "id",
-        "Name",
-        "Location",
-        "Remarks"          
-      );
-}
-
-  
-
+//https://huemint.com/bootstrap-plus/
 
 include "header.php";
 ?>
 
 <div class="container-md">
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="card overflow-hidden bg-c-orange">
+        <div class="card-content">
+          <div class="card-body cleartfix">
+            <div class="media align-items-stretch">
+              <div class="align-self-center">
+                <i class="icon-pencil primary font-large-2 mr-2"></i>
+              </div>
+              <div class="media-body">
+                <div style="float: right; text-align: right">
+                  <span><i class="fas fa-calendar-alt me-2"></i>24 June 2023</span><br />
+                  <h2>
+                    <i class="me-2" data-lucide="users-round"></i>:
+                    <span class="circle-singleline">                      
+                        5
+                    </span>
+                    </h2>
+                    <h3>Site: EMSD HQ G/F Demo area</h3>                  
+                </div>
 
+                <div class="align-self-center large-bg" style="margin: -23px -200px -60px -5px; float: left;">                  
+                  <i class="me-2 large-bg" data-lucide="map-pin"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <div id="tableInfo"></div>
-            
-    <table id="load_log" class="display compact" style="width:100%">
-        <thead>
-            <tr>
-                <?php                    
-                    foreach ($fields_to_display as $field)
-                    {
-                        echo "<th>". $field . "</th>\n";
-                    }
-                ?>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-            <?php                    
-                    foreach ($fields_to_display as $field)
-                    {
-                        echo "<th>". $field . "</th>\n";
-                    }
-                ?>
-            </tr>
-        </tfoot>
-    </table>
-    
+  <div class="row">
+
+    <?php
+
+    //https://lucide.dev/icons/wifi
+
+      $card_array = array();
+      $card_array[] = array(
+        'wifi',
+        'Status :',
+        'Normal',
+        'Signal connection',
+        'bg-c-green',
+        'normal'
+      );
+
+      $card_array[] = array(
+        'hard-hat',
+        'Count : ',
+        '0',
+        'PPE Detection',
+        'bg-c-yellow',
+        'normal'
+      );
       
-</div>
+      $card_array[] = array(
+        'flame',
+        'Count : ',
+        '0',
+        'Fire & Smoke Detection',
+        'bg-c-red',
+        'normal'
+      );
+      
+      $card_array[] = array(
+        'cigarette',
+        'Count : ',
+        '5',
+        'Smoking Detection',
+        'bg-c-pink',
+        'alarm'
+      );
+      
+      $card_array[] = array(
+        'construction',
+        'Count : ',
+        '0',
+        'Trespass Detection',
+        'bg-c-purple',
+        'normal',
+      );
+      
+      $card_array[] = array(
+        'heater',
+        'Count : ',
+        '0',
+        'Hotwork Detection',
+        'bg-c-blue',
+        'normal'
+      );      
+
+      $card_array[] = array(
+        'thermometer-sun',
+        'Temp : ',
+        '30 &deg;C',
+        'Heat Stress',
+        'bg-c-cyan',
+        'normal'
+      );      
+      
+
+
+    ?>
+
+    <? foreach ($card_array as $this_card) { ?>
+
+      <div class="col-6 col-md-4">
+        <div class="card <?=$this_card[4]?> <?=$this_card[5]?> small-cards">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center large-bg">                  
+                  <i class="me-2 large-bg" data-lucide="<?=$this_card[0]?>"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3><?=$this_card[1]?> <span class="circle-singleline"> <?=$this_card[2]?></span></h3>
+                  <span><?=$this_card[3]?></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <? }  ?>
+
+
+    
+  </div>
+
+  <div class="grey-bg container-fluid" style="display: none;">
+    <section id="minimal-statistics">
+
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card bg-c-pink">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="warning">156</h3>
+                  <span>New Comments</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-bubbles warning font-large-2 float-right"></i>
+                </div>
+              </div>
+              <div class="progress mt-1 mb-0" style="height: 7px;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="success">64.89 %</h3>
+                  <span>Bounce Rate</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-cup success font-large-2 float-right"></i>
+                </div>
+              </div>
+              <div class="progress mt-1 mb-0" style="height: 7px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="danger">423</h3>
+                  <span>Total Visits</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-direction danger font-large-2 float-right"></i>
+                </div>
+              </div>
+              <div class="progress mt-1 mb-0" style="height: 7px;">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      https://codepen.io/lesliesamafful/details/oNXgmBG
+    </section>
+    
+  </div>
+
 <script>
 
+function resize_small_cards() {
+  // Find the maximum height of the small-cards
+  var maxHeight = 0;
+  $(".small-cards").each(function() {
+    var cardHeight = $(this).height();
+    if (cardHeight > maxHeight) {
+      maxHeight = cardHeight;
+    }
+  });
+
+  // Set the height of all small-cards to the maximum height
+  $(".small-cards").height(maxHeight);
+}
 
 $(document).ready(function() {
-
-    //$.fn.dataTable.moment( 'YYYY-MM-DD' );
-
-
-    var table = $('#load_log').DataTable( {
-        "order": [[0 , "desc" ]],
-        "processing": true,
-        "serverSide": true,
-        "stateSave": false,        
-        "ajax": "server/php/datatables_ajax_server_processing.php",
-        "scrollX": true, 
-        "pagingType": 'full_numbers',
-        "responsive": true,
-        "lengthMenu": [
-            [20, 50, 200, 2000, 5000, -1],
-            [20, 50, 200, 2000, 5000, 'All'],
-        ],
-        "columnDefs": [
-
-            <? if ($_SESSION['access'] !== "admin") { ?>
-
-            
-            { "visible": false,  "targets": [2,5,6,7], title: ''} ,
-            { title: 'Date & Time',  "targets": 0 } ,              
-            {
-                // The `data` parameter refers to the data for the cell (defined by the
-                // `data` option, which defaults to the column being worked with, in
-                // this case `data: 0`.
-                title: 'Image',
-                "render": function ( data, type, row ) {
-                    //return data +' ('+ row[2]+')';
-                    return '<a class="gallery" href="' + data + '" target="_blank"><img src="' + row[2]+ '" style="max-height: 80px; " title="' + row[0] + ': ' + row[3] + '" /></a>';
-                },
-                "targets": 1, "orderable": false 
-            },
-                  
-            { title: 'Detection / Types',  "targets": 3,
-                render: function ( data, type, row)
-                {
-                    return data + ' <a href="preview.php?id=' + row[6] + '" target="_blank" title="Preview" ><i class="bi bi-search"></i></i></a>'; 
-                }            
-            } ,               
-            { 
-                title: 'Site / Location',  "targets": 4 ,
-                render: function ( data, type, row)
-                {
-                    return '<a href="https://carryai-' + row[5] + '-video.carryai.co" class="hls_video" title="'+row[5]+'"><i class="bi bi-camera-video"></i></a> ' + row[7] + "<br />" + row[8] + "<br />" + row[9]; 
-                }
-            }
-              
-            <? } else { ?>
-
-            { "visible": false,  "targets": [2], title: ''} ,
-            {
-                // The `data` parameter refers to the data for the cell (defined by the
-                // `data` option, which defaults to the column being worked with, in
-                // this case `data: 0`.
-                title: 'Image', "orderable": false, 
-                "render": function ( data, type, row ) {
-                    //return data +' ('+ row[2]+')';
-                    return '<a class="gallery" href="' + data + '" target="_blank"><img src="' + row[2]+ '" style="max-height: 80px; " title="' + row[0] + ': ' + row[3] + '" /></a>';
-                },
-                "targets": 1
-            },
-            { title: 'Date & Time',  "targets": 0 } ,                    
-            { title: 'Detection / Types',  "targets": 3 } ,
-            { title: 'Detection JSON',  "targets": 4, "orderable": false,
-                render: function ( data, type, row)
-                {
-                    return data + ' <a href="preview.php?id=' +  row[8] + '&serial_no='+ row[6]+ '"><i class="bi bi-chat-left-dots"></i></a>';   ; 
-                }
-             } ,
-              
-            { 
-                title: 'Video',  "targets": 6 ,
-                render: function ( data, type, row)
-                {
-                    return data + " " +'<a href="https://carryai-' + data + '-video.carryai.co" target="_blank" class="hls_video"> <i class="bi bi-camera-video"></i></a> ' ; 
-                }
-            } ,
-            { 
-                title: 'Zoning',  "targets": 6 , 
-                render : function ( data, type, row){
-                    return '<a href="zoning.php?id=' + data + '&serial_no='+ row[5]+ '" target="_blank"><i class="bi bi-bullseye"></i></a>'; 
-              }
-            }
-
-            <? } ?>
-
-        ],
-        //dom: 'QBlfrtip',
-        "searchBuilder": {
-            <? if ($_SESSION['access'] !== "admin") { ?>
-            columns: [0,3],
-            <? } else { ?>
-            columns: [0,3,4,5,6],
-            <? } ?>
-            depthLimit: 1
-        },    
-       // "dom": '<"wrapper"flipt>' ,
-        //"dom": 'lrtip',
-        dom: 'QlfBrtip',
-        "deferRender": true,
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-     
-    } );
-
- 
-
-
-    $('a.toggle-vis').on( 'click', function (e) {
-        e.preventDefault();
- 
-        // Get the column API object
-        var column = table.column( $(this).attr('data-column') );
- 
-        // Toggle the visibility
-        column.visible( ! column.visible() );
-    } );    
-
-
-    table
-        .on('draw', function () {
-            console.log("Draw done");
-            //var lightbox = new SimpleLightbox('a.gallery', a.lightBoxVideoLink', { /* options */ });        
-
-            $('a.gallery').magnificPopup({
-                type:'image',
-                mainClass: 'mfp-with-zoom', // this class is for CSS animation below
-                closeOnContentClick: true,
-                zoom: {
-                    enabled: true, // By default it's false, so don't forget to enable it
-
-                    duration: 300, // duration of the effect, in milliseconds
-                    easing: 'ease-in-out', // CSS transition easing function
-
-                    // The "opener" function should return the element from which popup will be zoomed in
-                    // and to which popup will be scaled down
-                    // By defailt it looks for an image tag:
-                    opener: function(openerElement) {
-                        // openerElement is the element on which popup was initialized, in this case its <a> tag
-                        // you don't need to add "opener" option if this code matches your needs, it's defailt one.
-                        return openerElement.is('img') ? openerElement : openerElement.find('img');
-                    }
-                }                
-            })
-         
- 
-            $('a.hls_video').magnificPopup({
-                type:'iframe',
-                mainClass: 'mfp-with-zoom', // this class is for CSS animation below
-                markup: '<div class="mfp-iframe-scaler">'+
-                    '<div class="mfp-close"></div>'+
-                    '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-                    '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
-        
-                srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".        
-                disableOn: function() {
-                if( $(window).width() < 600 ) {
-                    return false;
-                }
-                return true;
-                }                          
-            })    
-       
-            // setTimeout( () => 
-            // {
-
-            //     //console.log("Delayed for 1 second after draw done. //Code tobedisabled as interence drawing code added into the upload logic. Added the interence_result");
-            //     //var new_img = '<img src="server/php/image_overlay_inference_results.php" width="1" height="1" />';
-            //     //$("body").append(new_img);
-
-            // },1000)
-            
-
-        
-
-        });        
-    
-    
-
+  resize_small_cards();
+} );
+// Resize the small cards on window resize
+$(window).resize(function() {
+  resize_small_cards();
+});
 
     
-} );    
 </script>
 <? include "footer.php"; ?>
