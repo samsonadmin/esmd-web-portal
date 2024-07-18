@@ -19,7 +19,7 @@ display_login_form();
 include "header.php";
 ?>
 
-<div class="container-md">
+<div class="container-md content">
   <div class="row">
     <div class="col-xl-12 col-md-12">
       <div class="card overflow-hidden bg-c-orange">

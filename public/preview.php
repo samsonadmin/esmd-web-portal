@@ -159,24 +159,10 @@ $meta_tags[] = '<meta property="og:url" content="'.$actual_link.'" />';
 <? include_once 'header.php'; ?>
 <style>
 
-@media screen and (min-width:480px) {
-  .display_img {
-    max-width: 880px;
-    display: table-cell;
-    padding: 2px 0;
-  }  
-}  
-@media screen and (max-width:480px) {
-  .display_img {
-    width: 100%;
-    display: table-cell;
-    padding: 2px 0;
-  }
-}
 
 
 </style>
-<div class="text-center">
+<div class="text-center content">
   <img class="_img-fluid rounded mx-auto d-block display_img" src="<?=$image?>" />
 </div>
 <br />

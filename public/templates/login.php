@@ -19,39 +19,39 @@ include "header.php";
 <? } ?>
 
 
-<div class="container-md my-3">
+<div class="container-md my-3 content">
 
 		<form method="post">
 
     <div class="mb-3 row justify-content-center form-group">
-      <div class="col-md-8"> 
+      <div class="col-9"> 
           <h2>AI Safety Portal Login</h2>
       </div>
     </div>
 
     <div class="errors mb-3 row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-9">
             <? display_errors(); ?>       
         </div>
     </div>
     
 		<div class="mb-3 row justify-content-center form-group">
-			<label for="staticEmail" class="col-sm-2 col-form-label">Login name:</label>
-			<div class="col-md-6">
+			<label for="staticEmail" class="col-3 col-form-label">Login name:</label>
+			<div class="col-6">
 			<input type="text" name="username"  class="form-control" required>
 			</div>
 		</div>
 		<div class="mb-3 row justify-content-center form-group">
-			<label for="inputPassword" class="col-sm-2 col-form-label">Password：</label>
-			<div class="col-md-6">
+			<label for="inputPassword" class="col-3 col-form-label">Password：</label>
+			<div class="col-6">
 			<input type="password" name="password" class="form-control" id="inputPassword" required>
 			</div>
 		</div>
 				
 
 		<div class="mb-3 row justify-content-center form-group">
-      <label for="" class="col-sm-2 col-form-label"></label>
-      <div class="col-md-6">
+      <label for="" class="col-2 col-form-label"></label>
+      <div class="col-6">
           <input class="btn btn-warning" type="submit" value="登入" />        
       </div>
 		</div>

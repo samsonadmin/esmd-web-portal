@@ -15,19 +15,12 @@ lucide.createIcons();
 
 <div id="footerNav">
   <div class="container-md">
-  <ul>
-  <li><a href="/en/about/index.html">About Us</a></li>
-  <li><a href="/en/contact-us/index.html">Contact Us</a></li>
-  <li><a href="/en/faqs/index.html">FAQs</a></li>
-  <li><a href="/en/important-notices/index.html" target="_blank">Important Notices</a></li>
-  <li><a href="/en/privacy-policy/index.html" target="_blank">Privacy Policy</a></li>
-  </ul>
-  <p class="copyright">© Copyright 2024 Electrical and Mechanical Services Department</p>
+
   </div>
 
 
   <div>
-      <a href="https://www.carryai.co" style="font-size: 0.8em; border-top: 1px solid #f3f3f333; display: block; text-align:center; padding: 0.8em 0; margin: 2em ;">Powered by CarryAI</a>
+      <a href="https://www.carryai.co" style="font-size: 0.8em;  display: block; text-align:center; padding: 0em 0; margin: 5px ;">Powered by CarryAI</a>
   </div>
     
 </div>

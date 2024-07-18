@@ -1970,4 +1970,23 @@ function safe_log($file, $message) {
     }
 }
 
+function is_current_page($input_file_name)
+{
+	$current_page_name = basename($_SERVER['SCRIPT_NAME']);
+	if ( $current_page_name == "/" ||  $current_page_name == "index.php" )
+	{
+		if ($input_file_name == "index.php")
+			return true;
+	}
+	else
+	{
+		if ($current_page_name == $input_file_name)
+			return true;
+	}
+
+	return false;
+
+	//return basename($_SERVER['SCRIPT_NAME']);
+}
+
 ?>

@@ -27,8 +27,8 @@
   .header-logo{
     height: 30px;
     margin: 0;
-  }  
-}  
+  }
+}
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
@@ -65,12 +65,24 @@
 body {
   color: #212529;
   background-color: #f1f1f1;
-  height: 100vh;
+  height: 100%; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;  
+}
+
+html{
+  height: 100%; 
+  margin: 0;
+}
+
+.content { 
+  flex: 1;
 }
 
 .large-title
-{    
-  text-shadow: rgba(201, 201, 201, 0.38) 3px 3px 1px;  
+{
+  text-shadow: rgba(201, 201, 201, 0.38) 3px 3px 1px;
   text-align: center;
 }
 
@@ -83,12 +95,27 @@ body {
 
 .title-logo img, .title h3, .title h2{
   width: 100%;
-  vertical-align: middle;   
+  vertical-align: middle;
   align-items: center;
   line-height: 100%;
 }
 
 
+
+@media screen and (min-width:480px) {
+  .display_img {
+    max-width: 880px;
+    display: table-cell;
+    padding: 2px 0;
+  }  
+}  
+@media screen and (max-width:480px) {
+  .display_img {
+    width: 100%;
+    display: table-cell;
+    padding: 2px 0;
+  }
+}
 
 .card {
   background-color: rgba(255, 255, 255, 0.6);
@@ -101,11 +128,11 @@ body {
   min-width: 0;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, .06);
-          
+
   margin-bottom: 1.875rem;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, .125);
-  border-radius: 0.35rem;      
+  border-radius: 0.35rem;
   box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.293), 0 2px 9px 0 rgba(62, 57, 107, 0.296);
 }
 
@@ -121,6 +148,23 @@ body {
   background: linear-gradient(45deg,#4ce93e,#cde798);
   border-color: #4ce93e;
   color: #051004;
+}
+
+
+
+@keyframes fadeBlinkSubtle {
+  0% {
+      box-shadow: 0 0 20px rgba(40, 215, 122, 0.9);
+      border-color: rgba(40, 215, 122, 0.9);
+  }
+  50% {
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.993);
+      border-color: rgb(255, 255, 255);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(40, 215, 122, 0.9);
+      border-color: rgba(40, 215, 122, 0.9);
+  }
 }
 
 
@@ -167,7 +211,7 @@ body {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-}    
+}
 
 
 .large-bg
@@ -177,8 +221,8 @@ body {
   width: 120px;
   min-height: 120px;
   margin: -60px -200px -60px 0px;
-  
-  display: inline-flex; justify-content: center; align-items: center; 
+
+  display: inline-flex; justify-content: center; align-items: center;
 }
 .card-body
 {
@@ -194,7 +238,7 @@ body {
 
 .bg-c-purple {
   background: linear-gradient(45deg,#9878e8,#b49def);
-}    
+}
 
 .bg-c-orange {
   background: linear-gradient(45deg,#FFB64D,#f5debe);
@@ -220,15 +264,15 @@ body {
 
 .circle-singleline {
   padding: 0 0.1em;
-  
+
   border-radius: 10%;
   font-size: 1.1em;
   line-height: 1.2em;
-  text-align: center;    
+  text-align: center;
   background: linear-gradient(45deg,#ffffffb3,#fafafa83);
   color: #3b3b3b;
   display: inline-block;
-}    
+}
 
 .alarm .circle-singleline {
   animation: fadeBlink 1s infinite;
@@ -298,22 +342,26 @@ animation: animate2 15s linear infinite;
 #header-bar
 {
   background-color: #ffffff99;
-  box-shadow: 0 0px 20px 0  rgba(0, 0, 0, 0.2); /* Bottom shadow */
+  /* box-shadow: 0 0px 20px 0  rgba(0, 0, 0, 0.2);  Bottom shadow */
   padding-bottom: 0;
 }
 
 .navi-bar-bg
 {
   background-color: #6df80a32;
- 
+
 }
 
-
+#green_nav
+{
+  box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.2), /* Top shadow */
+  inset 0 -10px 10px -10px rgba(0, 0, 0, 0.2); /* Bottom shadow */
+  padding-bottom: 0px;
+}
 .navbar-nav{
   flex-direction:row;
   flex-wrap: wrap;
   display: flex;
-
 }
 
 .navbar-nav ul{
@@ -328,14 +376,18 @@ animation: animate2 15s linear infinite;
   margin-right: 0.1em;
   margin-bottom: 0.5em;
   color: #4099ff;
+  color: transparent;
 }
 
 .navbar-nav li:hover:not(.active) {
-  background-color: rgba(255, 255, 255, 0.05);
+  /*background-color: rgba(255, 255, 255, 0.05);*/
+  background-color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.201);
+  transform: translateY(2px);  
 }
 
 .navbar-nav li:hover:not(.active) a {
-  color: rgba(25, 152, 243, 0.752);
+  color: rgba(209, 25, 77, 0.797);
 }
 
 
@@ -357,6 +409,7 @@ animation: animate2 15s linear infinite;
   color: #000;
   position: relative;
   padding-bottom: 2px; /* Space for the border */
+  background-color: #ffffff22;
 }
 
 .navbar-nav li.active::after {
@@ -367,7 +420,7 @@ animation: animate2 15s linear infinite;
   width: 100%;
   height: 2px;
   background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-  border-bottom-left-radius: 6px; 
+  border-bottom-left-radius: 6px;
 }
 
 .navbar-nav span {
@@ -387,7 +440,6 @@ animation: animate2 15s linear infinite;
 }
 
 
-
 #footerNav
 {
   margin-top: 20px;
@@ -395,6 +447,207 @@ animation: animate2 15s linear infinite;
   color: #fff;
   padding: 10px 0;
 }
+
+#footerNav li
+{
+  list-style: none;
+}
 #footerNav a{
   color: #fff;
+
+}
+
+/* Style for LLM Chatbot */
+
+#chatIcon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #3CB043;
+  width: 35px;
+  height: 35px;
+  border-radius: 17px;
+  padding: 3px;
+  background-color: #ffffffae;
+  animation: fadeBlinkSubtle 1s infinite;
+}
+
+#chatIcon:hover {
+  background-color: #0093E9;
+  background-image: linear-gradient(127deg, #0093E9 0%, #80D0C7 100%);
+  color: #fff;
+}
+
+/* Smaller font size for mobile */
+@media (max-width: 600px) {
+  #chatIcon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.chat-bubble {
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+
+.chat-bubble.assistant {
+  background-color: #e1ffc7;
+  align-self: flex-start;
+}
+
+.chat-bubble.assistant.chart-container {
+  width: 40vw;
+  max-width: 90%;
+  min-width: 280px;
+}
+
+.chat-bubble.assistant::after {
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #e1ffc7 transparent transparent;
+  left: -10px;
+  top: 10px;
+}
+
+.chat-bubble.user {
+  background-color: #d1e7ff;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chat-bubble.user::after {
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #d1e7ff;
+  right: -10px;
+  top: 10px;
+}
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+}
+
+#chatWindow {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-section {
+  border-top: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.feedback-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+
+}
+
+.feedback-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  color: #808080;
+}
+
+.feedback-button i {
+  font-size: 25px;
+}
+
+.feedback-button[data-feedback="good"]:hover {
+  color: green;
+}
+
+.feedback-button[data-feedback="unsatisfied"]:hover {
+  color: orange;
+}
+
+.feedback-button[data-feedback="incorrect"]:hover {
+  color: red;
+}
+
+
+
+#recordButton{
+  background: none; /* No background */
+  border: none; /* No border */
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  font-size: 20px;
+  color: grey;
+  position: relative;
+
+}
+
+#recordButton:hover{
+  color: black;
+}
+
+.recording {
+  color: red;
+}
+
+#recordingModal {
+  display: none;
+  width: 180px;
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e5e5e5;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-size: 14px;
+  color: #000;
+  pointer-events: none;
+}
+
+#recordingModal:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #e5e5e5;
+  border-bottom: none;
+}
+
+
+#recordingModal.show {
+  display: block;
+}
+
+
+.drop-zone {
+    max-width: 100%;
+    padding: 25px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.drop-zone.dragover {
+    border-color: #000;
 }

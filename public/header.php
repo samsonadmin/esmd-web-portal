@@ -35,18 +35,20 @@ if ( isset ($meta_tags))
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+
+
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
   <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/fc-4.3.0/r-2.5.0/sb-1.6.0/sp-2.2.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
- 
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
  <script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/fc-4.3.0/r-2.5.0/sb-1.6.0/sp-2.2.0/sr-1.3.0/datatables.min.js"></script>
- 
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/js/bootstrap-colorpicker.min.js"></script>
 
@@ -115,9 +117,9 @@ if ( isset ($meta_tags))
       </div>
       <div class="col-xl-10 col-sm-10 col-8 title">
         <h2 class="large-title">
-        Intelligent Site Safety Monitoring System        
+        Intelligent Site Safety Monitoring System
         </h2>
-        
+
       </div>
     </div>
 
@@ -126,34 +128,34 @@ if ( isset ($meta_tags))
 
 
 <? if ( isset($_SESSION) && isset($_SESSION['admin_user'] ) ) { ?>
-<nav class="navbar navbar-dark navi-bar-bg" style="padding-bottom:0;">
+<nav class="navbar navbar-dark navi-bar-bg" id="green_nav">
 <div class="container-md" >
 
   <div id="main_nav" style="width: 100%;">
 
   <? if ( isset ( $_SESSION['admin_user'] ) ) { ?>
-    <ul class="navbar-nav" style="float: right;"> 
+    <ul class="navbar-nav" style="float: right;">
       <li class="nav-item"><a class="nav-link" href="/?logout=now"><i data-lucide="log-out"></i> <?=$_SESSION['admin_user']?></a></li>
-    </ul> 
+    </ul>
   <? } ?>
-  
-    <ul class="navbar-nav">
-      <li class="nav-item active"> <a class="nav-link" href="index.php">Dashboard </a> </li>
-      <li class="nav-item"><a class="nav-link" href="ai-detections.php"> AI Detections </a></li>
-      <li class="nav-item"><a class="nav-link" href="#"> Trespassing </a></li>
-      <li class="nav-item"><a class="nav-link" href="#"> Heat  </a></li>
-      <li class="nav-item"><a class="nav-link" href="#"> Trespassing </a></li>
-    </ul>   
-      
 
-  </div> 
+    <ul class="navbar-nav">
+      <li class="nav-item <?=is_current_page("index.php")? "active" :"" ?>"><a class="nav-link" href="index.php" >Dashboard</a></li>
+      <li class="nav-item <?=is_current_page("ai-detections.php")? "active" :"" ?>"><a class="nav-link" href="ai-detections.php"> AI Detections </a></li>
+      <li class="nav-item <?=is_current_page("trepassing.php")? "active" :"" ?>"><a class="nav-link" href="#"> Trespassing </a></li>
+      <li class="nav-item <?=is_current_page("hotwork-permit.php")? "active" :"" ?>"><a class="nav-link" href="hotwork-permit.php">Hot Work Permit</a></li>
+      <li class="nav-item <?=is_current_page("")? "active" :"" ?>"><a class="nav-link" href="#"> Trespassing </a></li>
+    </ul>
+
+
+  </div>
 
 
 <? if ( isset($_SESSION)) { ?>
 <div class="container-md">
-  
- 
-</div>  
+
+
+</div>
 
 <? } ?>
 
