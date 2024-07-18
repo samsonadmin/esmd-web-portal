@@ -43,7 +43,7 @@ $permits = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="container mt-2 content">
     <h2>Hot Work Permit Upload System</h2>
-    <table class="table table-striped">
+    <table class="table table-striped compact">
         <thead>
             <tr>
                 <th>ID</th>

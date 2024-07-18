@@ -29,9 +29,6 @@ include "header.php";
 
 $img = "loading.gif";
 
-$serial_no = SQLite3::escapeString(sanitize( $_REQUEST['serial_no'] ));
-
-
 
 ini_set('display_errors', 1);
 
@@ -54,8 +51,8 @@ $select_sql = "SELECT * from 'ai_detections' ".$filter_conditions." order by id 
 
 if ( $id == 0 )
 {
-  $filter_conditions = "where ( serial_no = '".$serial_no."' ) ";
-  $select_sql = "SELECT * from 'ai_detections' ".$filter_conditions." order by id DESC LIMIT 0,1 ;";
+  
+  $select_sql = "SELECT * from 'ai_detections' order by id DESC LIMIT 0,1 ;";
 }
 
 $query = $db->query($select_sql);
@@ -73,7 +70,7 @@ $db->close();
 
 if (count( $all_rows) == 0 )
 {
-  echo 'ID not found, please visit <a href="https://yolo.carryai.co">yolo.carryai.co</a>';
+  echo 'ID not found, please visit <a href="/">Home Page</a>';
   die;
 }
 
@@ -118,7 +115,7 @@ else
 
 ?>
 
-<div class="container-md">
+<div class="container-md content">
 
     <div style="padding-top: 10px">
         <canvas id="draw_canvas" height="540" width="960" style="height: 540px; width: 960px; border: 1px solid #333; background-image: url(<?=$img?>); background-repeat: no-repeat; background-size: 960px 540px; background-position: center center;"></canvas>

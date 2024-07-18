@@ -142,9 +142,9 @@ if ( isset ($meta_tags))
     <ul class="navbar-nav">
       <li class="nav-item <?=is_current_page("index.php")? "active" :"" ?>"><a class="nav-link" href="index.php" >Dashboard</a></li>
       <li class="nav-item <?=is_current_page("ai-detections.php")? "active" :"" ?>"><a class="nav-link" href="ai-detections.php"> AI Detections </a></li>
-      <li class="nav-item <?=is_current_page("trepassing.php")? "active" :"" ?>"><a class="nav-link" href="#"> Trespassing </a></li>
+      <li class="nav-item <?=is_current_page("zoning.php")? "active" :"" ?>"><a class="nav-link" href="zoning.php"> Trespassing </a></li>
       <li class="nav-item <?=is_current_page("hotwork-permit.php")? "active" :"" ?>"><a class="nav-link" href="hotwork-permit.php">Hot Work Permit</a></li>
-      <li class="nav-item <?=is_current_page("")? "active" :"" ?>"><a class="nav-link" href="#"> Trespassing </a></li>
+      
     </ul>
 
 
